@@ -4,63 +4,69 @@ import MemoryList from './MemoryList';
 import MemoryDetail from './MemoryDetail';
 import EditMemoryForm from './EditMemoryForm';
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
+import * as a from './../actions';
 
 class MemoryControl extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		thistory.state = {
+		this.state = {
 			selectedMemory: null,
 			editing: false
 		};
 	}
 	
 	handleAddingNewMemoryToList = (newMemory) => {
-		const newMasterMemoryList = this.state.newMasterMemoryList.concat(newMemory);
-		this.setState({ newMasterMemoryList: newMasterMemoryList, formVisibleOnPage: false })
+		const { dispatch } = this.props;
+		const action = a.addMemory(newMemory)
+		dispatch (action);
+		const action2 = a.toggleForm();
+		dispatch(action2);
 	}
 	
 	handleChangingSelectedMemory = (id) => {
-		const selectedMemory = this.state.newMasterMemoryList.filter(memory => mEditMemoryForm.id === id)[0];
-		this.setState({ selectedMemory: selectedMemory});
+		const selectedMemory = this.props.masterMemoryList[id];
+		this.setState({
+			selectedMemory: selectedMemory
+		});
 	}
 
 	handleDeletingMemory = (id) => {
-		const newMasterMemoryList = this.state.masterMemoryList.filter(memory => memory.id != id);
-		this.setState({
-			masterMemoryList: newMasterMemoryList,
-			selectedMemory: null
-		})
+		const { dispatch } = this.props;
+		const action = a.deleteMemory(id);
+		dispatch(action);
+		this.setState({selectedMemory: null});
 	}
 
 	handleEditClick = () => {
-		this.setState({editing: true});
+		this.setState({
+			editing: true
+		});
 	}
 
 	handleEditingMemoryInList = (memoryToEdit) => {
-		const editedMasterMemoryList = this.state.masterMemoryList
-			.filter(memory => memory.id !== this.state.selectedMemory.id)
-			.concat(memoryToEdit);
+		const { dispatch } = this.props;
+		const action = a.addMemory(memoryToEdit);
+		dispatch(action);
 		this.setState({
-				masterMemoryList: editedMasterMemoryList,
-				editing: false,
-				selectedMemory: null
-			});
+			editing: false,
+			selectedMemory: null
+		});
 	}
 
 	handleClick = () => {
 		if (this.state.selectedMemory != null) {
 			this.setState({
-				formVisibleOnPage: false,
 				selectedMemory: null,
 				editing: false
 			});
 		} else {
-				this.setState(prevState => ({
-			formVisibleOnPage: !prevState.formVisibleOnPage
-		}));
+			const { dispatch } = this.props;
+			const action = a.toggleForm();
+			dispatch(action);
+		}
 	}
-}
 
 
   render() {
@@ -79,7 +85,7 @@ class MemoryControl extends React.Component {
       onClickingDelete = {this.handleDeletingMemory}
       onClickingEdit = {this.handleEditClick}/>
       buttonText = "Return To Memory List";
-    } else if (this.state.formVisibleOnPage) {
+    } else if (this.props.formVisibleOnPage) {
       currentlyVisibleState =
       <NewMemoryForm
       onNewMemoryCreation = {this.handleAddingNewMemoryToList}
@@ -88,7 +94,7 @@ class MemoryControl extends React.Component {
     } else {
       currentlyVisibleState =
       <MemoryList
-      memoryList = {this.state.masterMemoryList}
+      memoryList = {this.props.masterMemoryList}
       onMemorySelection = {this.handleEditingMemoryInList} />
       buttonText = "Add Memory";
     }
@@ -101,5 +107,19 @@ class MemoryControl extends React.Component {
     );
   }
 }
+
+MemoryControl.propTypes = {
+	masterMemoryList: PropTypes.object,
+	formVisibleOnPage: PropTypes.bool
+}
+
+const mapStateToProps = state => {
+	return {
+		masterMemoryList: state.masterMemoryList,
+		formVisibleOnPage: state.formVisibleOnPage
+	}
+}
+
+MemoryControl = connect(mapStateToProps)(MemoryControl);
 
 export default MemoryControl;
