@@ -77,12 +77,13 @@ class MemoryControl extends React.Component {
       <MemoryDetail
       memory = {this.state.selectedMemory}
       onClickingDelete = {this.handleDeletingMemory}
-      onClickingEdit = {this.handleEditingMemoryInList} />
+      onClickingEdit = {this.handleEditClick}/>
       buttonText = "Return To Memory List";
     } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState =
       <NewMemoryForm
-      onNewMemoryCreation = {this.handleAddingNewMemoryToList} />
+      onNewMemoryCreation = {this.handleAddingNewMemoryToList}
+			onEditMemory = {this.handleEditingMemoryInList}/>
       buttonText = "Return To Memory List";
     } else {
       currentlyVisibleState =
