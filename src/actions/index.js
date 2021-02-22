@@ -7,7 +7,7 @@ export const toggleForm = () => ({
   type: 'TOGGLE_FORM',
 });
 
-export const addMemory = () => {
+export const addMemory = (memory) => {
   const { nameOfMemory, location, date, summary, id } = memory;
   return {
     type: 'ADD_MEMORY',

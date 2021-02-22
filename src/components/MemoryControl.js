@@ -80,6 +80,7 @@ class MemoryControl extends React.Component {
       onEditMemory = {this.handleEditingMemoryInList} />
       buttonText = "Return To Memory List";
     } else if (this.state.selectedMemory != null) {
+			currentlyVisibleState =
       <MemoryDetail
       memory = {this.state.selectedMemory}
       onClickingDelete = {this.handleDeletingMemory}
@@ -95,7 +96,7 @@ class MemoryControl extends React.Component {
       currentlyVisibleState =
       <MemoryList
       memoryList = {this.props.masterMemoryList}
-      onMemorySelection = {this.handleEditingMemoryInList} />
+      onMemorySelection = {this.handleChangingSelectedMemory}/>
       buttonText = "Add Memory";
     }
 

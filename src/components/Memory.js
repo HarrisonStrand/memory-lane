@@ -6,8 +6,7 @@ function Memory (props) {
     <React.Fragment>
       <div onClick = {() => props.whenMemoryClicked(props.id)}>
         <h3>{props.nameOfMemory}</h3>
-        <h4>{props.location} - {props.date}</h4>
-        <p></p>
+        <h4>{props.location} {props.date}</h4>
       </div>
     </React.Fragment>
   );
