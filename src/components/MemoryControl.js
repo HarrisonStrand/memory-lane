@@ -17,12 +17,10 @@ class MemoryControl extends React.Component {
 		};
 	}
 	
-	handleAddingNewMemoryToList = (newMemory) => {
+	handleAddingNewMemoryToList = () => {
 		const { dispatch } = this.props;
-		const action = a.addMemory(newMemory)
-		dispatch (action);
-		const action2 = a.toggleForm();
-		dispatch(action2);
+		const action = a.toggleForm();
+		dispatch(action);
 	}
 	
 	handleChangingSelectedMemory = (id) => {
@@ -45,15 +43,15 @@ class MemoryControl extends React.Component {
 		});
 	}
 
-	handleEditingMemoryInList = (memoryToEdit) => {
-		const { dispatch } = this.props;
-		const action = a.addMemory(memoryToEdit);
-		dispatch(action);
-		this.setState({
-			editing: false,
-			selectedMemory: null
-		});
-	}
+	// handleEditingMemoryInList = (memoryToEdit) => {
+	// 	const { dispatch } = this.props;
+	// 	const action = a.addMemory(memoryToEdit);
+	// 	dispatch(action);
+	// 	this.setState({
+	// 		editing: false,
+	// 		selectedMemory: null
+	// 	});
+	// }
 
 	handleClick = () => {
 		if (this.state.selectedMemory != null) {
