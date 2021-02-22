@@ -6,6 +6,7 @@ import EditMemoryForm from './EditMemoryForm';
 import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import * as a from './../actions';
+import { withFirestore } from 'react-redux-firebase'
 
 class MemoryControl extends React.Component {
 	
@@ -24,16 +25,22 @@ class MemoryControl extends React.Component {
 	}
 	
 	handleChangingSelectedMemory = (id) => {
-		const selectedMemory = this.props.masterMemoryList[id];
-		this.setState({
-			selectedMemory: selectedMemory
+    this.props.firestore
+		.get({collection: 'memories', doc: id})
+		.then((memory) => {
+			const firestoreMemory = {
+				nameOfMemory: memory.get('nameOfMemory'),
+				location: memory.get('location'),
+				date: memory.get('date'),
+				summary: memory.get('summary'),
+				id: memory.id
+			}
+      this.setState({selectedMemory: firestoreMemory});
 		});
 	}
 
 	handleDeletingMemory = (id) => {
-		const { dispatch } = this.props;
-		const action = a.deleteMemory(id);
-		dispatch(action);
+		this.props.firestore.delete({collection: 'memories', doc: id});
 		this.setState({selectedMemory: null});
 	}
 
@@ -52,6 +59,13 @@ class MemoryControl extends React.Component {
 	// 		selectedMemory: null
 	// 	});
 	// }
+
+	handleEditingMemoryInList = () => {
+		this.setState({
+			editing: false,
+			selectedMemory: null
+		});
+	}
 
 	handleClick = () => {
 		if (this.state.selectedMemory != null) {
@@ -108,17 +122,17 @@ class MemoryControl extends React.Component {
 }
 
 MemoryControl.propTypes = {
-	masterMemoryList: PropTypes.object,
+	// masterMemoryList: PropTypes.object,
 	formVisibleOnPage: PropTypes.bool
 }
 
 const mapStateToProps = state => {
 	return {
-		masterMemoryList: state.masterMemoryList,
+		// masterMemoryList: state.masterMemoryList,
 		formVisibleOnPage: state.formVisibleOnPage
 	}
 }
 
 MemoryControl = connect(mapStateToProps)(MemoryControl);
 
-export default MemoryControl;
+export default withFirestore(MemoryControl);
