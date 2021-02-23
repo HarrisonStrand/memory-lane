@@ -6,7 +6,7 @@ import EditMemoryForm from './EditMemoryForm';
 import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import * as a from './../actions';
-import { withFirestore } from 'react-redux-firebase'
+import { withFirestore, isLoaded } from 'react-redux-firebase'
 
 class MemoryControl extends React.Component {
 	
@@ -50,15 +50,6 @@ class MemoryControl extends React.Component {
 		});
 	}
 
-	// handleEditingMemoryInList = (memoryToEdit) => {
-	// 	const { dispatch } = this.props;
-	// 	const action = a.addMemory(memoryToEdit);
-	// 	dispatch(action);
-	// 	this.setState({
-	// 		editing: false,
-	// 		selectedMemory: null
-	// 	});
-	// }
 
 	handleEditingMemoryInList = () => {
 		this.setState({
@@ -82,43 +73,60 @@ class MemoryControl extends React.Component {
 
 
   render() {
-    let currentlyVisibleState = null;
-    let buttonText = null;
-    
-    if (this.state.editing) {
-      currentlyVisibleState =
-      <EditMemoryForm
-      memory = {this.state.selectedMemory}
-      onEditMemory = {this.handleEditingMemoryInList} />
-      buttonText = "Return To Memory List";
-    } else if (this.state.selectedMemory != null) {
-			currentlyVisibleState =
-      <MemoryDetail
-      memory = {this.state.selectedMemory}
-      onClickingDelete = {this.handleDeletingMemory}
-      onClickingEdit = {this.handleEditClick}/>
-      buttonText = "Return To Memory List";
-    } else if (this.props.formVisibleOnPage) {
-      currentlyVisibleState =
-      <NewMemoryForm
-      onNewMemoryCreation = {this.handleAddingNewMemoryToList}
-			onEditMemory = {this.handleEditingMemoryInList}/>
-      buttonText = "Return To Memory List";
-    } else {
-      currentlyVisibleState =
-      <MemoryList
-      memoryList = {this.props.masterMemoryList}
-      onMemorySelection = {this.handleChangingSelectedMemory}/>
-      buttonText = "Add Memory";
-    }
+		const auth = this.props.firebase.auth();
+		if(!isLoaded(auth)) {
+			return (
+				<>
+				<h1>Loading...</h1>
+				</>	
+			)
+		}
+		if((isLoaded(auth)) && (auth.currentUser == null)) {
+			return (
+				<>
+					<h1>You must be signed in to access the memory list...</h1>
+				</>
+			)
+		}
+		if ((isLoaded(auth)) && (auth.currentUser != null)) {
+			let currentlyVisibleState = null;
+			let buttonText = null;
+			
+			if (this.state.editing) {
+				currentlyVisibleState =
+				<EditMemoryForm
+				memory = {this.state.selectedMemory}
+				onEditMemory = {this.handleEditingMemoryInList} />
+				buttonText = "Return To Memory List";
+			} else if (this.state.selectedMemory != null) {
+				currentlyVisibleState =
+				<MemoryDetail
+				memory = {this.state.selectedMemory}
+				onClickingDelete = {this.handleDeletingMemory}
+				onClickingEdit = {this.handleEditClick}/>
+				buttonText = "Return To Memory List";
+			} else if (this.props.formVisibleOnPage) {
+				currentlyVisibleState =
+				<NewMemoryForm
+				onNewMemoryCreation = {this.handleAddingNewMemoryToList}
+				onEditMemory = {this.handleEditingMemoryInList}/>
+				buttonText = "Return To Memory List";
+			} else {
+				currentlyVisibleState =
+				<MemoryList
+				memoryList = {this.props.masterMemoryList}
+				onMemorySelection = {this.handleChangingSelectedMemory}/>
+				buttonText = "Add Memory";
+			}
 
-    return(
-      <>
-        {currentlyVisibleState}
-        <button onClick = {this.handleClick}>{buttonText}</button>
-      </>
-    );
-  }
+			return(
+				<>
+					{currentlyVisibleState}
+					<button onClick = {this.handleClick}>{buttonText}</button>
+				</>
+			);
+		}
+	}
 }
 
 MemoryControl.propTypes = {

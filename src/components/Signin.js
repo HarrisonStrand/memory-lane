@@ -26,6 +26,14 @@ function Signin(){
 				console.log(error.message);
 		});
 	}
+
+	function doSignOut() {
+		firebase.auth().signOut().then(function() {
+			console.log("successfully signed out!");
+		}).catch(function(error) {
+			console.log(error.message);
+		});
+	}
 	
 	return (
 		<>
@@ -54,6 +62,9 @@ function Signin(){
 				placeholder='Password' />	
 			<button type='submit'>Sign In</button>
 		</form>
+
+			<h1>Sign Out</h1>
+			<button onClick = {doSignOut}>Sign Out</button>
 		</>
 	);
 }
