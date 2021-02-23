@@ -1,0 +1,48 @@
+[debug] [2021-02-23T19:07:29.475Z] ----------------------------------------------------------------------
+[debug] [2021-02-23T19:07:29.477Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2021-02-23T19:07:29.477Z] CLI Version:   7.13.1
+[debug] [2021-02-23T19:07:29.477Z] Platform:      win32
+[debug] [2021-02-23T19:07:29.477Z] Node Version:  v12.19.0
+[debug] [2021-02-23T19:07:29.478Z] Time:          Tue Feb 23 2021 11:07:29 GMT-0800 (Pacific Standard Time)
+[debug] [2021-02-23T19:07:29.478Z] ----------------------------------------------------------------------
+[debug] [2021-02-23T19:07:29.478Z] 
+[debug] [2021-02-23T19:07:29.484Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-02-23T19:07:29.484Z] > authorizing via signed-in user
+[debug] [2021-02-23T19:07:29.484Z] [iam] checking project memory-lane-3da92 for permissions ["firebase.projects.get"]
+[debug] [2021-02-23T19:07:29.486Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/memory-lane-3da92:testIamPermissions  
+
+[debug] [2021-02-23T19:07:29.610Z] <<< HTTP RESPONSE 200
+[debug] [2021-02-23T19:07:29.612Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/memory-lane-3da92  
+ 
+[debug] [2021-02-23T19:07:29.734Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'E:\Epicodus\ReactJS\memory-lane'...
+[info] 
+[debug] [2021-02-23T19:07:29.742Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/memory-lane-3da92/webApps/-/config  
+ 
+[debug] [2021-02-23T19:07:29.871Z] Error: Cannot find module 'E:\Epicodus\ReactJS\memory-lane\functions\package.json'
+Require stack:
+- C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulator.js
+- C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\controller.js
+- C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\emulators-exec.js
+- C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\index.js
+- C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\index.js
+- C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:831:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:687:27)
+    at Module.require (internal/modules/cjs/loader.js:903:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at FunctionsEmulator.<anonymous> (C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulator.js:324:25)
+    at Generator.next (<anonymous>)
+    at C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulator.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulator.js:4:12)
+    at FunctionsEmulator.askInstallNodeVersion (C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulator.js:323:16)
+    at FunctionsEmulator.<anonymous> (C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulator.js:102:42)
+    at Generator.next (<anonymous>)
+    at C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulator.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulator.js:4:12)
+    at FunctionsEmulator.start (C:\Users\sarah\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulator.js:101:16)
+[error] 
+[error] Error: An unexpected error has occurred.
