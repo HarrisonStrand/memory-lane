@@ -1,7 +1,10 @@
 import React from 'react';
 import firebase from 'firebase/app';
+import { Redirect, Route, useHistory, useLocation, Link, Switch} from 'react-router-dom';
 
 function Register(){
+
+	const history = useHistory();
 
 	function doRegister(event) {
 		event.preventDefault();
@@ -9,6 +12,7 @@ function Register(){
 		const password = event.target.password.value;
 		firebase.auth().createUserWithEmailAndPassword(email, password)
 			.then(function(){
+			history.push('/signin');
 		}).catch(function(error) {
 		});
 	}

@@ -5,7 +5,9 @@ import MemoryList from './MemoryList';
 import { Redirect, Route, useHistory, useLocation, Link, Switch} from 'react-router-dom';
 
 function Signin(){
+
 	const history = useHistory();
+	
 	function doSignIn(event) {
 		event.preventDefault();
 		const email = event.target.signinEmail.value;
