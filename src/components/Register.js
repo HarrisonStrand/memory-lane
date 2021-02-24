@@ -15,7 +15,7 @@ function Register(){
 
   return (
 		<>
-		<h1>Sign Up</h1>
+		<h1>Register</h1>
 		<form onSubmit={doRegister}>
 			<input
 				type='text'
@@ -25,7 +25,7 @@ function Register(){
 				type='password'
 				name='password'
 				placeholder='Password' />
-			<button type='submit'>Sign up</button>
+			<button type='submit'>Register</button>
 		</form>
     </>
   );

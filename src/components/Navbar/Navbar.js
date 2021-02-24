@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <>
     <ReactBootStrap.Navbar bg="dark" variant="dark">
-      <ReactBootStrap.Navbar.Brand href="#home">Navbar</ReactBootStrap.Navbar.Brand>
+      <ReactBootStrap.Navbar.Brand href="#app">Navbar</ReactBootStrap.Navbar.Brand>
       <ReactBootStrap.Nav className="mr-auto">
       <Switch>
         <Route path ="/">
@@ -29,8 +29,9 @@ const Navbar = () => {
           <SignOut />
         </Route> 
       </Switch>
-        <ReactBootStrap.Nav.Link href="#home">Home</ReactBootStrap.Nav.Link>
-
+        <Link to = '/'>
+        <ReactBootStrap.Nav.Link href="#app">Home</ReactBootStrap.Nav.Link>
+        </Link>
         <Link to ="/Signin">
         <ReactBootStrap.Nav.Link href="#signin">Sign In</ReactBootStrap.Nav.Link>
         </Link>
@@ -57,12 +58,12 @@ export default Navbar;
 // <button id="myBtn">Open Modal</button>
 
 // <!-- The Modal -->
-// <div id="myModal" class="modal">
+{/* <div id="myModal" class="modal">
 
-//   <!-- Modal content -->
-//   <div class="modal-content">
-//     <span class="close">&times;</span>
-//     <p>Some text in the Modal..</p>
-//   </div>
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
 
-// </div>
+</div> */}

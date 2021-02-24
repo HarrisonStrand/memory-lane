@@ -25,6 +25,7 @@ function MemoryList(props) {
             id={memory.id}
             key={memory.id}/>
         })}
+        <hr></hr>
       </>
     );
   } else {

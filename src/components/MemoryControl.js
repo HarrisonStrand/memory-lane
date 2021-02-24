@@ -130,13 +130,11 @@ class MemoryControl extends React.Component {
 }
 
 MemoryControl.propTypes = {
-	// masterMemoryList: PropTypes.object,
 	formVisibleOnPage: PropTypes.bool
 }
 
 const mapStateToProps = state => {
 	return {
-		// masterMemoryList: state.masterMemoryList,
 		formVisibleOnPage: state.formVisibleOnPage
 	}
 }
