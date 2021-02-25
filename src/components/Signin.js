@@ -6,6 +6,17 @@ import { Redirect, Route, useHistory, useLocation, Link, Switch} from 'react-rou
 
 function Signin(){
 
+	const mySignin = {
+    backgroundColor: 'silver',
+    border: '12px black',
+		textAlign: 'center',
+    padding: '34px',
+    borderStyle:'groove',
+    borderRadius: '50%/100%',
+    width: '90%',
+    margin: '50px',
+  }
+
 	const history = useHistory();
 	
 	function doSignIn(event) {
@@ -23,18 +34,22 @@ function Signin(){
 	
 	return (
 		<>
+		<div style ={mySignin}>
     <h1>Sign In</h1>
 			<form onSubmit={doSignIn}>
 				<input
 					type = 'text'
 					name = 'signinEmail'
 					placeholder = 'email' />
+					<br></br>
 				<input
 					type='password'
 					name='signinPassword'
 					placeholder='Password' />	
+					<br></br>
 				<button type='submit'>Sign In</button>
 			</form>
+			</div>
 		</>
 	);
 }

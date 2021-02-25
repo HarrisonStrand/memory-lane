@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 function Memory (props) {
   return (
     <React.Fragment>
-      <div onClick = {() => props.whenMemoryClicked(props.id)}>
-        <h3>{props.nameOfMemory}</h3>
-        <h4>{props.location} {props.date}</h4>
+      <div className='card' id='memoryEntry'>
+        <div className='row'>
+        <div onClick = {() => props.whenMemoryClicked(props.id)}>
+          <h3>{props.nameOfMemory}</h3>
+          <h4>{props.location} {props.date}</h4>
+          </div>
+        </div>
       </div>
     </React.Fragment>
   );

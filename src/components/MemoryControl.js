@@ -84,7 +84,7 @@ class MemoryControl extends React.Component {
 		if((isLoaded(auth)) && (auth.currentUser == null)) {
 			return (
 				<>
-					<h1>You must be signed in to access the memory list...</h1>
+					<h4><center>You must be signed in to access the memory list...</center></h4>
 				</>
 			)
 		}

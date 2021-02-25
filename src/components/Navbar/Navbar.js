@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <>
     <ReactBootStrap.Navbar bg="dark" variant="dark">
-      <ReactBootStrap.Navbar.Brand href="#app">Navbar</ReactBootStrap.Navbar.Brand>
+      <ReactBootStrap.Navbar.Brand href="#app">Memory Lane</ReactBootStrap.Navbar.Brand>
       <ReactBootStrap.Nav className="mr-auto">
       <Switch>
         <Route path ="/">

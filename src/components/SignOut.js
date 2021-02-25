@@ -4,6 +4,17 @@ import { Redirect, Route, useHistory, useLocation, Link, Switch} from 'react-rou
 
 function SignOut() {
 
+  const mySignOut = {
+    backgroundColor: 'silver',
+    border: '12px black',
+		textAlign: 'center',
+    padding: '34px',
+    borderStyle:'groove',
+    borderRadius: '50%/100%',
+    width: '90%',
+    margin: '50px',
+  }
+
   const history = useHistory();
   
   function doSignOut() {
@@ -17,8 +28,10 @@ function SignOut() {
 
   return (
     <>
-    <h1>Sign Out</h1>
-			<button onClick = {doSignOut}>Sign Out</button>
+    <div style={mySignOut}>
+      <h1>Sign Out</h1>
+        <button onClick = {doSignOut}>Sign Out</button>
+    </div>
     </>
   );
 }

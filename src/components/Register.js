@@ -4,6 +4,17 @@ import { Redirect, Route, useHistory, useLocation, Link, Switch} from 'react-rou
 
 function Register(){
 
+	const myRegister = {
+    backgroundColor: 'silver',
+    border: '12px black',
+		textAlign: 'center',
+    padding: '34px',
+    borderStyle:'groove',
+    borderRadius: '50%/100%',
+    width: '90%',
+    margin: '50px',
+  }
+
 	const history = useHistory();
 
 	function doRegister(event) {
@@ -19,18 +30,22 @@ function Register(){
 
   return (
 		<>
+		<div style={myRegister}>
 		<h1>Register</h1>
 		<form onSubmit={doRegister}>
 			<input
 				type='text'
 				name='email'
 				placeholder='email' />
+				<br></br>
 			<input
 				type='password'
 				name='password'
 				placeholder='Password' />
+				<br></br>
 			<button type='submit'>Register</button>
 		</form>
+		</div>
     </>
   );
 }

@@ -1,7 +1,5 @@
 import React from 'react';
 import Header from './Header.js';
-import Memory from './Memory.js';
-import MemoryList from './MemoryList';
 import MemoryControl from "./MemoryControl";
 import Signin from './Signin';
 import Register from './Register';
@@ -33,7 +31,6 @@ function App() {
 				</Route> */}
         <Route path ="/" component={App}>
 
-          <Memory/>
           <MemoryControl />
         </Route>
       </Switch>
